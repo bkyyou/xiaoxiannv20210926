@@ -10,7 +10,8 @@
 #content{
   position: absolute;
   left: 50%;
-  top: 30%;
+  /* top: 30%; */
+  top: 20%;
   transform: translateX(-50%);
 }
 
@@ -19,6 +20,12 @@
 	width:670px;
 	height:625px;
 }
+
+/* @media (screen) and (max-width: 1400px) {
+	#content{
+		top: 20%;
+	}
+} */
 
 @media screen and (max-width: 960px) { 
   #content{

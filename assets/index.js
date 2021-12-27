@@ -155,3 +155,14 @@ const generateAnimateWriter = async (writerList) => {
 const writerList = getWriterList();
 generateAnimateWriter(writerList);
 
+
+let myAudio = document.getElementById('myAudio');
+let playAudio = document.getElementById('playAudio');
+
+playAudio.addEventListener('click', () => {
+  myAudio.play();
+  playAudio.style.display = 'none';
+})
+
+
+

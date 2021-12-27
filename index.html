@@ -46,13 +46,20 @@
       position: absolute;
       /* top: 130px; */
       /* top: 24%; */
-      top: 18%;
+      top: 8%;
       display: flex;
       justify-content: center;
       width: 100%;
       opacity: .6;
       transition: all 2s;
     }
+
+    /* @media (screen) and (max-width: 1400px) {
+      #happy-birthday__container{
+        top: 8%;
+      }
+    } */
+
 
     .happy-birthday__container>div {
       height: 100px;
@@ -232,10 +239,22 @@
         height: 100vh;
       } */
     }
+
+    #playAudio {
+      position: absolute;
+      z-index: 999;
+      bottom: 10px;
+      right: 10px;
+    }
+    #myAudio {
+      display: none;
+    }
   </style>
 </head>
 
 <body>
+  <audio id="myAudio" src="./assets/a.mp3"></audio>
+  <div id="playAudio">播放</div>
   <div class="container">
     <div class="happy-birthday__container">
       <div id="sheng"></div>
