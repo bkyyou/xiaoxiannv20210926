@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAPPY BIRTHDAY</title>
+  <link rel="stylesheet" href="./assets/css/heart.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      font-size: 20px;
+    }
+
+    body {
+      overflow: hidden;
+    }
+
+    .container {
+      background: linear-gradient(#07112c, #2355d6);
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .land {
+      position: relative;
+      z-index: 20;
+      height: 60vh;
+      margin-top: 75vh;
+      width: 300%;
+      background: linear-gradient(#072945 0%, #000 30%);
+      border-radius: 50%;
+      margin-left: -100vw;
+    }
+
+    .happy-birthday__container {
+      position: absolute;
+      /* top: 130px; */
+      /* top: 24%; */
+      top: 8%;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      opacity: .6;
+      transition: all 2s;
+    }
+
+    /* @media (screen) and (max-width: 1400px) {
+      #happy-birthday__container{
+        top: 8%;
+      }
+    } */
+
+
+    .happy-birthday__container>div {
+      height: 100px;
+      width: 100px;
+      margin: 0 10px;
+      flex: 0 1 auto;
+    }
+
+    .person {
+      position: absolute;
+      z-index: 99;
+      top: calc(75vh - 100px);
+      left: calc(50vw - 30px);
+      height: 100px;
+      width: 60px;
+    }
+
+    .person-reflect {
+      -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.6)));
+    }
+
+    .head {
+      position: relative;
+      height: 40px;
+      width: 40px;
+      background-color: #000;
+      border-radius: 50%;
+      margin-left: 10px;
+      z-index: 99;
+    }
+
+    .body-container {
+      margin-left: 15px;
+      margin-top: -10px;
+      width: 30px;
+      position: relative;
+      z-index: 20;
+    }
+
+    .body-content {
+      width: 100%;
+      height: 35px;
+      background-color: #000;
+    }
+
+    .body-radius {
+      width: 100%;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #000;
+      margin-top: -5px;
+    }
+
+    .legs {
+      margin-left: 15px;
+      margin-top: -6px;
+      height: 30px;
+      width: 36px;
+    }
+
+    .left {
+      display: inline-block;
+      border-right: 7px solid transparent;
+      border-left: 5px solid transparent;
+      border-top: 35px solid #000;
+    }
+
+    .right {
+      display: inline-block;
+      border-right: 6px solid transparent;
+      border-left: 7px solid transparent;
+      border-top: 35px solid #000;
+    }
+
+    .left-hand {
+      position: absolute;
+      height: 35px;
+      width: 10px;
+      background-color: #000;
+      border-radius: 50%;
+      left: 10px;
+      top: 35px;
+      z-index: 1;
+    }
+
+    .right-hand {
+      position: absolute;
+      width: 9px;
+      height: 50px;
+      background-color: #000;
+      left: 45px;
+      top: 7px;
+      border-radius: 50%;
+      transform: rotate(20deg);
+      z-index: 1;
+    }
+
+    .person-show>.head {
+      background: linear-gradient(#072253, rgb(20, 19, 65));
+    }
+
+    .person-show>.body-container>div {
+      background-color: rgb(20, 19, 65);
+    }
+
+    .person-show>.left-hand,
+    .right-hand {
+      background-color: rgb(20, 19, 65);
+    }
+
+    .person-show .legs>div {
+      border-top-color: #151618;
+    }
+
+    @keyframes star-scale {
+      from {
+        transform: scale(1, 1);
+      }
+
+      25% {
+        transform: scale(0.1, 0.1);
+      }
+
+      50% {
+        transform: scale(1, 1);
+      }
+
+      25% {
+        transform: scale(2, 2);
+      }
+
+      to {
+        transform: scale(1, 1);
+      }
+    }
+
+    .star {
+      height: 3px;
+      width: 3px;
+      background-color: #faf89d;
+      border-radius: 50%;
+      position: absolute;
+      animation: star-scale 2s;
+      animation-iteration-count: infinite;
+    }
+
+    #my-canvas {
+      position: absolute;
+      width: 100%;
+      height: 80vh;
+    }
+
+    @media screen and (max-width: 960px) {
+      .happy-birthday__container {
+        flex-wrap: wrap;
+        /* padding: ; */
+        top: 12%;
+      }
+
+      .site {
+        display: none;
+      }
+
+      .happy-birthday__container .myXiaoXianNv {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .happy-birthday__container>div {
+        height: 50px;
+        width: 50px;
+      }
+
+      /* #my-canvas {
+        height: 100vh;
+      } */
+    }
+
+    #playAudio {
+      position: absolute;
+      z-index: 999;
+      bottom: 10px;
+      right: 10px;
+    }
+    #myAudio {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <audio id="myAudio" src="./assets/a.mp3"></audio>
+  <div id="playAudio">播放</div>
+  <div class="container">
+    <div class="happy-birthday__container">
+      <div id="sheng"></div>
+      <div id="ri"></div>
+      <div id="kuai"></div>
+      <div id="le"></div>
+      <div id="ya"></div>
+      <div id="site"></div>
+      <div id="xiao"></div>
+      <div id="xian"></div>
+      <div id="nv"></div>
+    </div>
+    <div class="happy-birthday__container">
+      <div id="phone_sheng"></div>
+      <div id="phone_ri"></div>
+      <div id="phone_kuai"></div>
+      <div id="phone_le"></div>
+      <!-- <div id="site"></div> -->
+      <div class="myXiaoXianNv">
+        <div id="phone_xiao"></div>
+        <div id="phone_xian"></div>
+        <div id="phone_nv"></div>
+      </div>
+    </div>
+    <canvas id="my-canvas"></canvas>
+    <!-- <div class="person person-reflect">
+      <div class="head"></div>
+      <div class="left-hand"></div>
+      <div class="right-hand"></div>
+      <div class="body-container">
+        <div class="body-content"></div>
+        <div class="body-radius"></div>
+      </div>
+      <div class="legs">
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+    </div>
+    <div class="person person-show">
+      <div class="head"></div>
+      <div class="left-hand"></div>
+      <div class="right-hand"></div>
+      <div class="body-container">
+        <div class="body-content"></div>
+        <div class="body-radius"></div>
+      </div> -->
+      <!-- <div class="legs">
+        <div class="left"></div>
+        <div class="right"></div>
+      </div> -->
+    </div>
+    <!-- <div class="land"></div> -->
+  </div>
+
+  <div id="mainDiv">
+    <div id="content">
+      <div id="code">
+        <span class="comments nickname">我的宝</span><br />
+        <span class="space"></span><span class="comments">我会牵着你的手，走到我们满头白发的那一天</span><br />
+        <span class="space"></span><span class="comments">我会守护你生命里的精彩，并陪伴你一路精彩下去。</span><br />
+        <span class="space"></span><span class="comments">你的幸福快乐，是我一生的追求。</span><br />
+        <span class="space"></span><span class="comments">我会每一天带着笑脸，和你说早安，</span><br />
+        <span class="space"></span><span class="comments">我会每一晚与你道声晚安再入梦乡，</span><br />
+        <span class="space"></span><span class="comments">我会带你去所有你想去的地方，</span><br />
+        <span class="space"></span><span class="comments">陪你闹看你笑</span><br />
+        <span class="space"></span><span class="comments">历经你生命中所有的点点滴滴。</span><br />
+        <span class="space"></span><span class="comments">我期待这一生与你一起走过，</span><br />
+        <span class="space"></span><span class="comments">走到尽头再回头看尽一生铅华满地，</span><br />
+        <span class="space"></span><span class="comments">我期待与你慢慢变老，</span><br />
+        <span class="space"></span><span class="comments">等我们老到哪儿也去不了，</span><br />
+        <span class="space"></span><span class="comments">还能满载着一生的幸福快乐。</span><br />
+        <span class="space"></span><span class="comments">我愿意爱你直到老去，</span><br />
+        <!-- <span class="keyword">我愿意爱你直到老去，<br /> -->
+        <span class="space"></span><span class="comments">我会为我们的未来撑起一片天空，</span><br />
+        <span class="space"></span><span class="comments">为我们的将来担负起一生的责任，</span><br />
+        <span class="space"></span><span class="comments">愿意为你去做每一件能让你开心快乐的事。</span><br />
+        <span class="space"><span class="comments">所有我们经历的点点滴滴，</span></span> <br />
+        <span class="space comments">都是我们一辈子最美的回忆。</span> <br />
+        <br />
+      </div>
+      <div id="loveHeart">
+        <canvas id="garden"></canvas>
+        <div id="words">
+          <div id="messages">
+            宝,我爱你！
+            <div id="elapseClock"></div>
+          </div>
+          <div id="loveu">
+            Love u forever and ever.<br />
+            <div class="signature">- 你的憨憨2021</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="http://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.2/dist/hanzi-writer.min.js"></script> -->
+  <script src="./assets/hanzi-writer.min.js"></script>
+  <script src="./assets/enum.js"></script>
+  <!-- <script src="./assets/respose.js"></script> -->
+  <script src="./assets/setStyle.js"></script>
+  <script src="./assets/index1.js"></script>
+  <script src="./assets/garden.js"></script>
+  <script src="./assets/run.js"></script>
+
+  <script type="text/javascript">
+    // 设置时间
+    var offsetX = $("#loveHeart").width() / 2;
+    var offsetY = $("#loveHeart").height() / 2 - 55;
+    var together = new Date();
+    together.setFullYear(2021, 6, 19); // 月份从0开始
+    together.setHours(19);
+    together.setMinutes(0);
+    together.setSeconds(0);
+    together.setMilliseconds(0);
+
+    // console.log('together', together);
+
+    if (!document.createElement('canvas').getContext) {
+      var msg = document.createElement("div");
+      msg.id = "errorMsg";
+      msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+";
+      document.body.appendChild(msg);
+      $("#code").css("display", "none")
+      $("#copyright").css("position", "absolute");
+      $("#copyright").css("bottom", "10px");
+      document.execCommand("stop");
+    } else {
+
+      let setTime = 12000
+      screentWidthFlag && (setTime = 10000);
+      // 心时间的出现
+      setTimeout(function() {
+        startHeartAnimation();
+      }, setTime);
+
+      // 设置时间
+      timeElapse(together);
+      setInterval(function() {
+        timeElapse(together);
+      }, 500);
+
+      adjustCodePosition();
+      // 设置 心 旁边的文案
+      if (!screentWidthFlag) {
+        setTimeout(() => {
+          $("#code").typewriter();
+        }, 10000);
+      } else {
+        $('#code').remove()
+      }
+    }
+  </script>
+</body>
+
+</html>
